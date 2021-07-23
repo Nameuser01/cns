@@ -45,17 +45,7 @@
 		</div>
 	</section>
 	<footer>
-		<div class="menu_left">
-			<div>
-				<p>Creator: </p>
-				<p>Creation: 01/28/21</p>
-			</div>
-		</div>
-		<div class="menu_right"> 
-			<div>
-				<p>email: </p>
-			</div>
-		</div>
+	<?php include("fonctions/footer.php"); ?>
 	</footer>
 </body>
 </html>

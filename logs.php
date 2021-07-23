@@ -2,7 +2,7 @@
 session_start();
 $ip_addr = $_SERVER['REMOTE_ADDR'];
 $date_var = date("H:i:s d/m/Y");
-$legal = 0;
+$legal = 0; //0 means you can acces to the site; 1 means the opposite, ip will be send to blacklist
 try
 {
 	$bdd = new PDO('mysql:host=localhost;dbname=mywiki;charset=utf8', 'root', '');
