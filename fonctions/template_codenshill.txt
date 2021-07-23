@@ -83,14 +83,11 @@ if($_SESSION["name"]){
 	<footer>
 		<div class="menu_bottom_left">
 			<div>
-				<p>Creator: Sakura</p>
 				<p>Creation: 01/28/21</p>
 			</div>
 		</div>
 		<div class="menu_bottom_right"> 
 			<div>
-				<p>email: antoine.rimbault@hotmail.com</p>
-				<p>phone: +33 6 527 888 98</p>
 			</div>
 		</div>
 	</footer>
