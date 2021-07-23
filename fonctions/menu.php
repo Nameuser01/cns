@@ -1,0 +1,1 @@
+<p>Test d'injection de code avec le fichier menu.php</p>
