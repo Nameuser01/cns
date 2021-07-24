@@ -160,6 +160,9 @@ if(isset($_SESSION['name'])){
 		<div class="contleft"> <!-- !!!!!!!!!! Informations pratiques (liens etc...) !!!!!!!!!! -->
 			<div><h4>Useful links:</h4></div>
 			<div><h3>Twitch:</h3></div>
+			<a class="useful_links" href="https://www.twitch.tv/jimmyboyyy" target="_blank">Jimyboyyy</a>
+			<a class="useful_links" href="https://www.twitch.tv/aypierre" target="_blank">aypierre</a>
+			<a class="useful_links" href="https://www.twitch.tv/horty_" target="_blank">horty_</a>
 			<br />
 			<div><h3 style="margin-top: 30px;">foo:</h3></div>
 		</div>
@@ -216,7 +219,7 @@ if(isset($_SESSION['name'])){
 			while ($donnees = $reponse->fetch())
 			{
 				?>
-				<p>At <strong><?php echo htmlspecialchars($donnees['date']) . " Admin"; ?></strong> says: <?php echo htmlspecialchars($donnees['commentaire']); ?></p>
+				<p>At <strong style="color:#f00;"><?php echo htmlspecialchars($donnees['date']) . " " . $donnees['auteur']; ?></strong> says: <?php echo htmlspecialchars($donnees['commentaire']); ?></p>
 				<?php
 			}
 			$reponse->closeCursor();

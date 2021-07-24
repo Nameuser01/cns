@@ -216,7 +216,7 @@ if(isset($_SESSION['name'])){
 									}
 									else{}
 								?>
-								</strong>At <strong><?php echo htmlspecialchars($donnees['date']); ?>, <?php echo $donnees['auteur']; ?></strong> says:<br /><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
+								</strong>At <strong style="color:#f00;"><?php echo htmlspecialchars($donnees['date']); ?>, <?php echo $donnees['auteur']; ?></strong> says:<br /><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
 							</div>
 						<?php
 					}
@@ -231,7 +231,7 @@ if(isset($_SESSION['name'])){
 									else{}
 								?>
 								</strong>
-								At <strong><?php echo nl2br(htmlspecialchars($donnees['date'])); ?>, <?php echo $donnees['auteur']; ?></strong> says:<br /><?php echo htmlspecialchars($donnees['commentaire']); ?></p>
+								At <strong style="color:#f00;"><?php echo nl2br(htmlspecialchars($donnees['date'])); ?>, <?php echo $donnees['auteur']; ?></strong> says:<br /><?php echo htmlspecialchars($donnees['commentaire']); ?></p>
 							</div>
 						<?php
 					}

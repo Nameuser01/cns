@@ -53,7 +53,7 @@
 					</div>
 					<div class="deroulant">
 						<ul class="listoption">
-							<a class="option" href="http://192.168.0.50/profil">Profil</a><br />
+							<a class="option" href="http://192.168.0.50/profil.php">Profil</a><br />
 							<a class="option" href="http://192.168.0.50/administration.php">Administration</a><br />
 						</ul>
 				</li>

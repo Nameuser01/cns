@@ -1,0 +1,38 @@
+ul{/*Style du texte uniquement*/
+	/*list-style:none;*/
+}
+.deroulant{
+	/*height: 0px;*/
+	overflow: hidden;
+	opacity: 0;
+	position: absolute;
+	/*display: none;*/
+	/*margin-left: 0px;*/
+	transition: 2s;
+	background-color: #303032;
+	border-radius: 0px 10px;
+	padding-bottom: 10px;
+	padding-top:5px;
+	/*border: 1px solid purple;*/
+}
+.option{/*Style des liens contenus dans les sous-onglets*/
+	color: #cccccc;
+	float: left;
+	margin-left: -40px;
+	/*border: 1px solid green;*/
+	padding: 5px 20px 5px 20px;
+}
+.listonglet{/*Style des onglets*/
+	display: flex;
+	justify-content: left;
+	/*border: 1px solid red;*/
+}
+.onglet{
+	font-weight: 600;
+	margin: 10px 50px 10px 0px;
+	/*border: 1px solid yellow;*/
+}
+#menu_deroulant{
+	display:flex;
+	flex-direction: row;
+}
