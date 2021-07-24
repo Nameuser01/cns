@@ -160,9 +160,9 @@ if(isset($_SESSION['name'])){
 		<div class="contleft"> <!-- !!!!!!!!!! Informations pratiques (liens etc...) !!!!!!!!!! -->
 			<div><h4>Useful links:</h4></div>
 			<div><h3>Twitch:</h3></div>
-			<a class="useful_links" href="https://www.twitch.tv/jimmyboyyy" target="_blank">Jimyboyyy</a>
-			<a class="useful_links" href="https://www.twitch.tv/aypierre" target="_blank">aypierre</a>
-			<a class="useful_links" href="https://www.twitch.tv/horty_" target="_blank">horty_</a>
+			<a class="useful_links" href="https://www.twitch.tv/" target="_blank"></a>
+			<a class="useful_links" href="https://www.twitch.tv/" target="_blank"></a>
+			<a class="useful_links" href="https://www.twitch.tv/" target="_blank"></a>
 			<br />
 			<div><h3 style="margin-top: 30px;">foo:</h3></div>
 		</div>
