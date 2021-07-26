@@ -20,7 +20,6 @@ session_start();
 		if(isset($_SESSION['name']))
 		{
 	?>
-		<!-- Contenu de la page, si l'utilisateur est authentifié -->
 		<header>
 			<div class="top_infos">
 				<div><h1>Code'nShill - Youtube</h1></div>
@@ -33,6 +32,9 @@ session_start();
 				include("fonctions/menu.php");
 			?>
 		</header>
+		<section>
+			<!--Ajouter le contenu de cette page-->
+		</section>
 		<footer>
 			<?php
 				include("fonctions/footer.php");

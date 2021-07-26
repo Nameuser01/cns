@@ -6,7 +6,10 @@ session_start();
 <head>
 	<title>Music - C'nS</title>
 	<meta charset="utf-8" />
-	<!-- <link rel="stylesheet" href="http://192.168.0.50/main.css" /> -->
+	<link rel="stylesheet" href="http://192.168.0.50/css/header.css" />
+	<link rel="stylesheet" href="http://192.168.0.50/css/body.css" />
+	<link rel="stylesheet" href="http://192.168.0.50/css/menu.css" />
+	<link rel="stylesheet" href="http://192.168.0.50/css/footer.css" />
 	<link rel="icon" href="lapin.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">

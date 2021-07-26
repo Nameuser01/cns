@@ -1,3 +1,7 @@
+<?php
+if(isset($_SESSION['name']))
+{
+?>
 <nav id="menu_deroulant"><!--Menu animations-->
 			<ul class="listonglet">
 				<li>
@@ -70,3 +74,11 @@
 				$(this).children('.deroulant').css('height','0px')
 			})
 		</script>
+<?php
+}
+else
+{
+	echo "Oups, tu t'es perdu...";
+	header('Location: http://192.168.0.50');
+}
+?>

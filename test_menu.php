@@ -63,7 +63,7 @@
 						<div class="deroulant">
 							<ul class="listoption">
 								<a class="option" href="https://youtube.com">Youtube</a><br />
-								<a class="option" href="https://">foo</a><br />
+								<a class="option" href=""></a><br />
 								<li class="option">option 3</li><br />
 								<li class="option">option 4</li><br />
 								<li class="option"><a href="http://192.168.0.50/home.php">Home</a></li>
@@ -76,7 +76,7 @@
 						</div>
 						<div class="deroulant">
 							<ul class="listoption">
-								<a class="option" href="https://twitch.tv/">twitch</a><br />
+								<a class="option" href="https://twitch.tv/"></a><br />
 								<li class="option">option 2</li><br />
 								<li class="option">option 3</li><br />
 								<li class="option">option 4</li><br />
@@ -108,5 +108,6 @@
 			$(this).children('.deroulant').css('opacity','0')
 			$(this).children('.deroulant').css('height','0px')
 		})
+		myFunction()
 	</script>
 </html>

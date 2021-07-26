@@ -3,7 +3,7 @@
 <head>
 	<title>Code'nShill - C'nS</title>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="http://192.168.0.50/main.css" />
+	<link rel="stylesheet" href="http://192.168.0.50/css/main.css" />
 	<link rel="icon" href="lapin.ico">
 	<!-- <META HTTP-EQUIV="Refresh" CONTENT="5" /> -->
 	<style>
