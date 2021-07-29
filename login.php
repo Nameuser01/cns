@@ -3,7 +3,7 @@
 <head>
 	<title>Login - C'nS</title>
 	<meta charset="utf-8" />
-	<link rel="icon" href="lapin.ico">
+	<link rel="icon" href="img/lapin.ico">
 	<style>
 		body{
 			background-color: #000011;
@@ -36,6 +36,8 @@
 		{
 			session_start();
 			$_SESSION["name"] = $data["pseudo"];
+			$_SESSION["identifiant"] = $data["identifiant"];
+			$_SESSION["id"] = $data["id"];
 			$_SESSION["role"] = $data["role"];
 			$_SESSION["email"] = $data["email"];
 			header('Location: http://192.168.0.50/logs.php');

@@ -10,7 +10,7 @@ session_start();
 	<link rel="stylesheet" href="http://192.168.0.50/css/body.css" />
 	<link rel="stylesheet" href="http://192.168.0.50/css/menu.css" />
 	<link rel="stylesheet" href="http://192.168.0.50/css/footer.css" />
-	<link rel="icon" href="lapin.ico" />
+	<link rel="icon" href="img/lapin.ico" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -54,6 +54,11 @@ session_start();
 			padding:10px;
 			flex-wrap: wrap;
 			width: 24%;
+		}
+		#titre,
+		#commentaire
+		{
+			font-size: 18px;
 		}
 	}		
 	</style>
@@ -161,9 +166,9 @@ if(isset($_SESSION['name'])){
 			<form method="post" action="http://192.168.0.50/note_post.php">
 				<div>
 					<label for="titre" style="font-size: 20px">Titre</label><br>
-					<input type="text" name="titre" id="titre" maxlength="255" size="100%" /><br><br>
+					<input type="text" name="titre" id="titre" maxlength="255" size="101%" /><br><br>
 					<label for="commentaire" style="font-size: 20px;">Commentaire</label><br>
-					<textarea id="commentaire" name="commentaire" cols="100%" rows="7" size="100%" ></textarea><br>
+					<textarea id="commentaire" name="commentaire" cols="100%" rows="10" size="100%" ></textarea><br>
 				</div>
 				<div style="margin-top: 20px;">
 					<input type="submit" value="Poster" name="bouton" style="padding: 6px">

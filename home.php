@@ -10,14 +10,54 @@ session_start();
 	<link rel="stylesheet" href="http://192.168.0.50/css/body.css" />
 	<link rel="stylesheet" href="http://192.168.0.50/css/menu.css" />
 	<link rel="stylesheet" href="http://192.168.0.50/css/footer.css" />
-	<link rel="icon" href="lapin.ico" />
+	<link rel="icon" href="img/lapin.ico" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+	@media screen and (min-width: 1850px)
+	{
+		#conteneurs
+		{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			width: auto;
+		}
+		.conteneur_gauche
+		{
+			width: 10%;
+		}
+		.conteneur_centre
+		{
+			width: 50%;
+		}
+		.conteneur_droite
+		{
+			width: 25%;
+		}
+	}
+	@media screen and (max-width: 1850px)
+	{
+		#conteneur
+		{
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			width: auto;
+			margin-left: 50px;
+		}
+		.cont_titre
+		{
+			font-decoration: underline;
+		}
+	}
+	</style>
 </head>
 <body>
 <?php
-if(isset($_SESSION['name'])){
+if(isset($_SESSION['name']))
+{
 ?>
 	<header>
 		<div class="top_infos">
@@ -41,9 +81,9 @@ if(isset($_SESSION['name'])){
 			die('Erreur : ' . $e->getMessage());
 		}
 	?>
-	<nav id="sections">
-		<div class="contleft">
-			<div><h4>Useful links:</h4></div>
+	<section id="conteneurs">
+		<div class="conteneur_gauche">
+			<div><h4 class="cont_titre">Useful links:</h4></div>
 			<div><h3>Twitch:</h3></div>
 			<?php
 				$req_twitch = $bdd->query('SELECT id, streamer FROM liens_twitch ORDER BY id DESC');
@@ -57,7 +97,7 @@ if(isset($_SESSION['name'])){
 			<br />
 			<div><h3 style="margin-top: 30px;">foo:</h3></div>
 		</div>
-		<div class="contcenter">
+		<div class="conteneur_centre">
 			<h4>Main content:</h4>
 			<?php
 			$reponse = $bdd->query('SELECT * FROM music_playlist ORDER BY id DESC');
@@ -87,7 +127,7 @@ if(isset($_SESSION['name'])){
 			$reponse->closeCursor();
 			?>
 		</div>
-		<div class="contright">
+		<div class="conteneur_droite">
 			<h4>Actualités:</h4>
 			<?php
 			try
@@ -108,7 +148,7 @@ if(isset($_SESSION['name'])){
 			$reponse->closeCursor();
 		?>
 		</div>
-	</nav>
+	</section>
 	<footer>
 		<?php
 			include("fonctions/footer.php");

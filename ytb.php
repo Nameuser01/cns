@@ -6,7 +6,7 @@ session_start();
 <head>
 	<title>Youtube - C'nS</title>
 	<meta charset="utf-8" />
-	<link rel="icon" href="lapin.ico">
+	<link rel="icon" href="img/lapin.ico">
 	<link rel="stylesheet" href="http://192.168.0.50/css/header.css" />
 	<link rel="stylesheet" href="http://192.168.0.50/css/body.css" />
 	<link rel="stylesheet" href="http://192.168.0.50/css/menu.css" />

@@ -10,7 +10,7 @@ session_start();
 	<link rel="stylesheet" href="http://192.168.0.50/css/body.css" />
 	<link rel="stylesheet" href="http://192.168.0.50/css/menu.css" />
 	<link rel="stylesheet" href="http://192.168.0.50/css/footer.css" />
-	<link rel="icon" href="lapin.ico">
+	<link rel="icon" href="img/lapin.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

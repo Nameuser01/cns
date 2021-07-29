@@ -12,7 +12,7 @@ session_start();
 	<!-- <meta http-equiv="refresh" content="5"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="icon" href="lapin.ico">
+	<link rel="icon" href="img/lapin.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="fichier_test.js" type="text/javascript"></script>
 	<meta charset="utf-8" />

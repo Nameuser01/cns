@@ -1,4 +1,5 @@
 <?php
+//Redirection vers l'index + record d'ip dans la bdd (logs connexion)
 $ip_addr = $_SERVER['REMOTE_ADDR'];
 $date_var = date("H:i:s d/m/Y");
 $legal = 1;
