@@ -22,7 +22,7 @@ if(isset($_SESSION['name']))
 					<div class="deroulant">
 						<ul class="listoption">
 							<a class="option" href="http://192.168.0.50/note.php?page=1">Notes</a><br />
-							<a class="option" href="http://192.168.0.50/orientation.php">Orientation</a>
+							<a class="option" href="http://192.168.0.50/orientation.php">[Orientation]</a><br />
 						</ul>
 				</li>
 			</ul>
@@ -34,7 +34,7 @@ if(isset($_SESSION['name']))
 					<div class="deroulant">
 						<ul class="listoption">
 							<a class="option" href="http://192.168.0.50/music.php">Musique</a><br />
-							<a class="option" href="http://192.168.0.50/ytb.php?tag=toute">Vidéos Youtube</a>
+							<a class="option" href="http://192.168.0.50/ytb.php?tag=toute">Vidéos Youtube</a><br />
 						</ul>
 				</li>
 			</ul>
@@ -45,8 +45,9 @@ if(isset($_SESSION['name']))
 					</div>
 					<div class="deroulant">
 						<ul class="listoption">
-							<a class="option" href="http://192.168.0.50/cpp.php">Projets C++</a><br />
-							<a class="option" href="http://192.168.0.50/test_menu.php">test menus</a>
+							<a class="option" href="http://192.168.0.50/cpp.php">[Projets C++]</a><br />
+							<a class="option" href="http://192.168.0.50/test_menu.php">test menus</a><br />
+							<a class="option" href="http://192.168.0.50/hack.php">Hack</a><br />
 						</ul>
 				</li>
 			</ul>

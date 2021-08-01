@@ -92,15 +92,15 @@ if(isset($_SESSION['name'])){
 				{
 					die('Erreur : ' . $e->getMessage());
 				}
-				$result = $bdd->query('SELECT COUNT(*) as nbr_comments FROM note');
+				$user_name = $_SESSION['name'];
+				$result = $bdd->query("SELECT COUNT(*) as nbr_comments FROM note WHERE auteur='$user_name'");
 				$data = $result->fetch();
 				$nbr_comments = htmlspecialchars($data['nbr_comments']);
-				$result->closeCursor();
+				// $result->closeCursor();
 				// Nombre de pages à créer
-				$query_max_id = $bdd->query("SELECT MAX(id) AS max_id FROM note");
+				$query_max_id = $bdd->query("SELECT MAX(id) AS max_id FROM note WHERE auteur='$user_name'");
 				$data_for_id = $query_max_id->fetch();
 				$max_id = $data_for_id['max_id'];
-				$query_max_id->closeCursor();
 				$nbr_pages = intdiv($max_id, 10);
 				$nbr_pages++;
 				$i = 1;
@@ -108,7 +108,7 @@ if(isset($_SESSION['name'])){
 				$max_id_comment = ++$max_id_comment * 10;
 				$max_borne = ($max_id_comment - ($_GET['page'] - 1) * 10);
 				$min_borne = $max_borne - 10;
-				$reponse = $bdd->query("SELECT * FROM note WHERE ID < $max_borne AND ID >= $min_borne ORDER BY ID DESC");
+				$reponse = $bdd->query("SELECT * FROM note WHERE auteur='$user_name' AND ID < $max_borne AND ID >= $min_borne ORDER BY ID DESC");
 				$step_stop = 1;
 				while ($donnees = $reponse->fetch())
 				{
@@ -122,7 +122,10 @@ if(isset($_SESSION['name'])){
 										Titre : <?php echo htmlspecialchars($donnees['titre']); ?><br /><br />
 										<?php
 									}
-									else{}
+									else
+									{
+										//Do nothing
+									}
 								?>
 								</strong>At <strong style="color:#f00;"><?php echo htmlspecialchars($donnees['date']); ?>, <?php echo $donnees['auteur']; ?></strong> says:<br /><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
 							</div>
@@ -136,7 +139,10 @@ if(isset($_SESSION['name'])){
 									if(strlen(htmlspecialchars($donnees['titre'])) > 0){
 										echo "Titre: ".htmlspecialchars($donnees['titre'])."<br><br>";
 									}
-									else{}
+									else
+									{
+										//Do nothing
+									}
 								?>
 								</strong>
 								At <strong style="color:#f00;"><?php echo nl2br(htmlspecialchars($donnees['date'])); ?>, <?php echo $donnees['auteur']; ?></strong> says:<br /><?php echo htmlspecialchars($donnees['commentaire']); ?></p>

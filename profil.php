@@ -48,13 +48,14 @@ session_start();
 				$info = $requete->fetch();
 			?>
 			<h4 class="informations">Bonjour <?php echo $info['pseudo']; ?>,<br />Tu peux ici modifier tes infomations personnelles et consulter ton activité sur le site.</h4>
-			<!-- Récap des infos connues sur l'utilisation -->
+			<!-- Récap des infos connues sur l'utilisateur -->
 			<br /><p>Tes informations:</p>
 			<p>
 				Pseudo: <?php echo $info['pseudo']; ?><br />
 				Rôle(s) <?php echo $info['role']; ?><br />
 				Nombres de messages sur le forum: <?php echo $info['nbr_messages']; ?><br />
 				Ton score est actuellement de : <?php echo $info['score']; ?>
+				<br />
 			</p>
 			<!-- Formulaire de création de compte -->
 			<?php

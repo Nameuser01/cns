@@ -13,11 +13,9 @@ if(isset($_SESSION['name'])){
 	else{
 		echo "Error deleting record: " . $connect->error;
 	}
-	?>
-	<script>
-		document.location.href="http://192.168.0.50/note.php?page=1";
-	</script>
-	<?php
+	//Récupération du nombre de messages
+	
+	header('Location: http://192.168.0.50/note.php?page=1');
 }
 else{
 	include("fonctions/ipsend.php");
