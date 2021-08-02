@@ -36,6 +36,16 @@ session_start();
 		{
 			width: 25%;
 		}
+		.titre_section
+		{
+			text-decoration: none;
+			font-size: 25px;
+		}
+		.titre
+		{
+			text-decoration: underline;
+			font-size: 20px;
+		}
 	}
 	@media screen and (max-width: 1850px)
 	{
@@ -83,22 +93,33 @@ if(isset($_SESSION['name']))
 	?>
 	<section id="conteneurs">
 		<div class="conteneur_gauche">
-			<div><h4 class="cont_titre">Useful links:</h4></div>
-			<div><h3>Twitch:</h3></div>
+			<div><h4 class="titre_section">Liens utiles:</h4></div>
+			<div><h3 class="titre">Twitch:</h3></div>
 			<?php
-				$req_twitch = $bdd->query('SELECT id, streamer FROM liens_twitch ORDER BY id DESC');
-				while ($twitch_data = $req_twitch->fetch())
+				//Test d'issert avant la phase d'affichage.
+				$nbr_chaines = $bdd->query("SELECT COUNT(*) as follows FROM liens_twitch WHERE auteur='".$_SESSION['name']."'");
+				$data = $nbr_chaines->fetch();
+				$nbr_chaines = $data['follows'];
+				if($nbr_chaines > "0")
 				{
-					?>
-					<a href="https://twitch.tv/<?php echo $twitch_data['streamer']; ?>" target="_blank"><?php echo $twitch_data['streamer']; ?></a><br />
-					<?php
+					$req_twitch = $bdd->query("SELECT * FROM liens_twitch WHERE auteur='".$_SESSION['name']."'");
+					while ($twitch_data = $req_twitch->fetch())
+					{
+						?>
+							<a href="https://twitch.tv/<?php echo $twitch_data['streamer']; ?>" target="_blank"><?php echo $twitch_data['streamer']; ?></a><br />
+						<?php
+					}
+				}
+				else
+				{
+					echo "Tu ne suis aucune chaîne twitch actuellement. Tu peux en ajouter sur ";?><a href="http://192.168.0.50/administration.php">cette page</a><?php echo ".";
 				}
 			?>
 			<br />
-			<div><h3 style="margin-top: 30px;">foo:</h3></div>
+			<div><h3 style="margin-top: 30px;" class="titre">foo:</h3></div>
 		</div>
 		<div class="conteneur_centre">
-			<h4>Main content:</h4>
+			<h4 class="titre_section">Main content:</h4>
 			<?php
 			$reponse = $bdd->query('SELECT * FROM music_playlist ORDER BY id DESC');
 			$compteur = 0;
@@ -128,7 +149,7 @@ if(isset($_SESSION['name']))
 			?>
 		</div>
 		<div class="conteneur_droite">
-			<h4>Actualités:</h4>
+			<h4 class="titre_section">Actualités:</h4>
 			<?php
 			try
 			{

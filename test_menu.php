@@ -6,7 +6,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta http-equiv="refresh" content="5">
+		<!-- <meta http-equiv="refresh" content="5"> -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<style>
 			body{
@@ -105,6 +105,10 @@
 			$(this).children('.deroulant').css('opacity','0')
 			$(this).children('.deroulant').css('height','0px')
 		})
-		myFunction()
+
+		if(window.confirm("Tu es sûr de vouloir ajouter a ta liste de chaînes twitch ?"))
+		{
+			document.write("Okay c'est fait");
+		}
 	</script>
 </html>

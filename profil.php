@@ -54,7 +54,7 @@ session_start();
 				Pseudo: <?php echo $info['pseudo']; ?><br />
 				Rôle(s) <?php echo $info['role']; ?><br />
 				Nombres de messages sur le forum: <?php echo $info['nbr_messages']; ?><br />
-				Ton score est actuellement de : <?php echo $info['score']; ?>
+				<strong>Ton score est actuellement de: <?php echo $info['score']; ?></strong>
 				<br />
 			</p>
 			<!-- Formulaire de création de compte -->

@@ -153,7 +153,7 @@ if(isset($_SESSION['name'])){
 					<!-- Formulaire de suppression de données -->
 					<form method="post" action="http://192.168.0.50/delete_note.php">
 						<input type="hidden" name="id" value="<?php echo htmlspecialchars($donnees['id']) ; ?>">
-						<input type="submit" name="delCom" value="remove this comment">
+						<input type="submit" class="submit_bouton" name="delCom" value="remove this comment">
 					</form>
 					<?php 
 				}
