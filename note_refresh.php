@@ -75,7 +75,7 @@ $new_value=10;
 $name=$_SESSION['name'];
 $bdd->query("UPDATE note_bis SET secondaryID=$new_value WHERE pseudo='$name'");
 
-$result = $bdd->query("SELECT COUNT(*) as nbr_comments FROM note WHERE auteur='$name'");
+$result = $bdd->query("SELECT COUNT(*) as nbr_comments FROM note WHERE pseudo='$name'");
 $data = $result->fetch();
 $nbr_coms = htmlspecialchars($data['nbr_comments']);
 print "$nbr_coms";
@@ -86,6 +86,3 @@ print "$nbr_coms";
 	<a href="http://192.168.0.50/note.php?page=1">Cliquer ici pour la redirection</a>
 </body>
 </html>
-<?php
-// header('Location: http://192.168.0.50/note.php?page=1');
-?>

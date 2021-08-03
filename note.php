@@ -93,12 +93,12 @@ if(isset($_SESSION['name'])){
 					die('Erreur : ' . $e->getMessage());
 				}
 				$user_name = $_SESSION['name'];
-				$result = $bdd->query("SELECT COUNT(*) as nbr_comments FROM note WHERE auteur='$user_name'");
+				$result = $bdd->query("SELECT COUNT(*) as nbr_comments FROM note WHERE pseudo='$user_name'");
 				$data = $result->fetch();
 				$nbr_comments = htmlspecialchars($data['nbr_comments']);
 				// $result->closeCursor();
 				// Nombre de pages à créer
-				$query_max_id = $bdd->query("SELECT MAX(id) AS max_id FROM note WHERE auteur='$user_name'");
+				$query_max_id = $bdd->query("SELECT MAX(id) AS max_id FROM note WHERE pseudo='$user_name'");
 				$data_for_id = $query_max_id->fetch();
 				$max_id = $data_for_id['max_id'];
 				$nbr_pages = intdiv($max_id, 10);
@@ -108,7 +108,7 @@ if(isset($_SESSION['name'])){
 				$max_id_comment = ++$max_id_comment * 10;
 				$max_borne = ($max_id_comment - ($_GET['page'] - 1) * 10);
 				$min_borne = $max_borne - 10;
-				$reponse = $bdd->query("SELECT * FROM note WHERE auteur='$user_name' AND ID < $max_borne AND ID >= $min_borne ORDER BY ID DESC");
+				$reponse = $bdd->query("SELECT * FROM note WHERE pseudo='$user_name' AND ID < $max_borne AND ID >= $min_borne ORDER BY ID DESC");
 				$step_stop = 1;
 				while ($donnees = $reponse->fetch())
 				{
@@ -127,7 +127,7 @@ if(isset($_SESSION['name'])){
 										//Do nothing
 									}
 								?>
-								</strong>At <strong style="color:#f00;"><?php echo htmlspecialchars($donnees['date']); ?>, <?php echo $donnees['auteur']; ?></strong> says:<br /><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
+								</strong>At <strong style="color:#f00;"><?php echo htmlspecialchars($donnees['date']); ?>, <?php echo $donnees['pseudo']; ?></strong> says:<br /><?php echo nl2br(htmlspecialchars($donnees['commentaire'])); ?></p>
 							</div>
 						<?php
 					}
@@ -145,7 +145,7 @@ if(isset($_SESSION['name'])){
 									}
 								?>
 								</strong>
-								At <strong style="color:#f00;"><?php echo nl2br(htmlspecialchars($donnees['date'])); ?>, <?php echo $donnees['auteur']; ?></strong> says:<br /><?php echo htmlspecialchars($donnees['commentaire']); ?></p>
+								At <strong style="color:#f00;"><?php echo nl2br(htmlspecialchars($donnees['date'])); ?>, <?php echo $donnees['pseudo']; ?></strong> says:<br /><?php echo htmlspecialchars($donnees['commentaire']); ?></p>
 							</div>
 						<?php
 					}

@@ -9,9 +9,9 @@ if(isset($_SESSION['name'])){
 	{
 		die('Erreur : ' . $e->getMessage());
 	}
-	$req = $bdd->prepare ('INSERT INTO note (titre, date, auteur, commentaire) VALUES (?, ?, ?, ?)');
+	$req = $bdd->prepare ('INSERT INTO note (titre, date, pseudo, commentaire) VALUES (?, ?, ?, ?)');
 	$date_var = date("H:i:s d/m/Y");
-	$req->execute(array($_POST['titre'], $date_var, $_SESSION["name"], $_POST['commentaire']));
+	$req->execute(array($_POST['titre'], $date_var, $_SESSION['name'], $_POST['commentaire']));
 	// Requêtes pour incrémenter le nombre de messages de l'utilisateur
 	$r_msg_nbr = $bdd->query('SELECT nbr_messages FROM users WHERE pseudo="'.$_SESSION['name'].'"');
 	$stats = $r_msg_nbr->fetch();

@@ -97,12 +97,12 @@ if(isset($_SESSION['name']))
 			<div><h3 class="titre">Twitch:</h3></div>
 			<?php
 				//Test d'issert avant la phase d'affichage.
-				$nbr_chaines = $bdd->query("SELECT COUNT(*) as follows FROM liens_twitch WHERE auteur='".$_SESSION['name']."'");
+				$nbr_chaines = $bdd->query("SELECT COUNT(*) as follows FROM liens_twitch WHERE pseudo='".$_SESSION['name']."'");
 				$data = $nbr_chaines->fetch();
 				$nbr_chaines = $data['follows'];
 				if($nbr_chaines > "0")
 				{
-					$req_twitch = $bdd->query("SELECT * FROM liens_twitch WHERE auteur='".$_SESSION['name']."'");
+					$req_twitch = $bdd->query("SELECT * FROM liens_twitch WHERE pseudo='".$_SESSION['name']."'");
 					while ($twitch_data = $req_twitch->fetch())
 					{
 						?>
@@ -121,51 +121,54 @@ if(isset($_SESSION['name']))
 		<div class="conteneur_centre">
 			<h4 class="titre_section">Main content:</h4>
 			<?php
-			$reponse = $bdd->query('SELECT * FROM music_playlist ORDER BY id DESC');
-			$compteur = 0;
-			while ($donnees = $reponse->fetch())
+			$req_nbr_videos = $bdd->query("SELECT COUNT(*) as compteur FROM music_playlist WHERE pseudo='".$_SESSION['name']."'");
+			$data = $req_nbr_videos->fetch();
+			$compteur = $data['compteur'];
+			// echo "DEBEUG PHP: Il y a en tout: " . $compteur . " vidéos dans la base de donnée<br>";
+			$name = $_SESSION['name'];
+			if($compteur > 0)
 			{
-				$compteur++;
+				$random_number = rand(1, $compteur);
+				// echo "DEBEUG PHP 2: Le nombre random est " . $random_number ;
+				$final_result = $bdd->query("SELECT * FROM music_playlist WHERE pseudo='$name'");
+				$step_cursor = 1;
+				while ($donnees = $final_result->fetch())
+				{
+					if($step_cursor == $random_number)
+					{
+						?>
+						<iframe width="800" height="520" src="https://www.youtube.com/embed/<?php echo htmlspecialchars($donnees['lien_video']) ; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<?php
+						break;
+					}
+					else
+					{
+						//Do nothing
+					}
+					$step_cursor++;
+				}
+				$final_result->closeCursor();
 			}
-			// echo "DEBEUG PHP: Il y a en tout: " . $compteur . " vidéos dans la base de donnée";?><br /><?php
-			$random_number = rand(1, $compteur);
-			// echo "DEBEUG PHP 2: Le nombre random est " . $random_number ;
-			$final_result = $bdd->query("SELECT * FROM music_playlist");
-			$step_cursor = 	1;
-			while ($donnees = $final_result->fetch())
+			else
 			{
-				if($step_cursor == $random_number){
 				?>
-				<iframe width="1000" height="720" src="https://www.youtube.com/embed/<?php echo htmlspecialchars($donnees['lien_video']) ; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<p>Il n'y a aucune vidéo à afficher pour votre compte. Vous pouvez en ajouter sur <a href="http://192.168.0.50/music.php">cette page</a>.</p>
 				<?php
-				break;
-				}
-				else{
-					//Do nothing
-				}
-				$step_cursor++;
 			}
-			$reponse->closeCursor();
 			?>
 		</div>
 		<div class="conteneur_droite">
 			<h4 class="titre_section">Actualités:</h4>
 			<?php
-			try
-			{
-				$bdd = new PDO('mysql:host=localhost;dbname=mywiki;charset=utf8', 'root', '');
-			}
-			catch(Exeption $e)
-			{
-				die('Erreur : ' . $e->getMessage());
-			}
-			$reponse = $bdd->query('SELECT * FROM note ORDER BY ID DESC LIMIT 0, 5');
+			$reponse = $bdd->query("SELECT * FROM note WHERE pseudo='$name' ORDER BY ID DESC LIMIT 0, 3");
 			while ($donnees = $reponse->fetch())
 			{
 				?>
-				<p>At <strong style="color:#f00;"><?php echo htmlspecialchars($donnees['date']) . " " . $donnees['auteur']; ?></strong> says: <?php echo htmlspecialchars($donnees['commentaire']); ?></p>
+				<p>Le <strong style="color:#f00;"><?php echo htmlspecialchars($donnees['date']); ?></strong>:<br /><?php echo htmlspecialchars($donnees['commentaire']); ?></p>
 				<?php
 			}
+			$req_twitch->closeCursor();
+			$req_nbr_videos->closeCursor();
 			$reponse->closeCursor();
 		?>
 		</div>

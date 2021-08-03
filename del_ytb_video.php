@@ -1,6 +1,7 @@
 <?php
 session_start();
-if(isset($_SESSION['name'])){
+if(isset($_SESSION['name']))
+{
 	$idDelete = $_POST['id'];
 	$tagReturn = $_POST['tag'];
 	$connexion = new PDO('mysql:host=localhost;dbname=mywiki;charset=utf8', 'root', '');
@@ -8,10 +9,12 @@ if(isset($_SESSION['name'])){
 		die("Connexion failed: " . bdd_connect_error());
 	}
 	$sql = "DELETE FROM ytb_videos WHERE id=$idDelete";
-	if($connexion->query($sql) == TRUE){
+	if($connexion->query($sql) == TRUE)
+	{
 		echo "Record deleted successfully";
 	}
-	else{
+	else
+	{
 		echo "Error deleting record: " . $connexion->error;
 	}
 	?>
@@ -20,7 +23,8 @@ if(isset($_SESSION['name'])){
 	</script>
 	<?php
 }
-else{
+else
+{
 	include("fonctions/ipsend.php");
 }
-	?>
+?>

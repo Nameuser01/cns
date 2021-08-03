@@ -18,7 +18,7 @@ catch(Exeption $e)
 	die('Erreur : ' . $e->getMessage());
 }
 
-$req = $bdd->prepare('INSERT INTO liens_twitch (auteur, streamer) VALUES (?, ?)');
+$req = $bdd->prepare('INSERT INTO liens_twitch (pseudo, streamer) VALUES (?, ?)');
 $req->execute(array($_POST['pseudo'], $_POST['streamer']));
 header('Location: http://192.168.0.50/administration.php');
 ?>
