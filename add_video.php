@@ -9,8 +9,8 @@ catch (Exeption $e)
 {
 	die('Erreur : ' . $e->getMessage());
 }
-	$req = $bdd->prepare ('INSERT INTO music_playlist (nom_video, lien_video) VALUES (?, ?)');
-	$req->execute(array($_POST['name_video'], $_POST['url_video']));
+	$req = $bdd->prepare ('INSERT INTO music_playlist (nom_video, lien_video, pseudo) VALUES (?, ?, ?)');
+	$req->execute(array($_POST['name_video'], $_POST['url_video'], $_SESSION['name']));
 	header('Location: http://192.168.0.50/music.php');
 }
 else{

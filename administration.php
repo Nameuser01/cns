@@ -82,28 +82,56 @@ if(isset($_SESSION['name']))
 	?>
 	<nav id="conteneurs">
 		<div class="conteneur_gauche">
-			<h4 class="titre_section">Gestion:</h4>
-			<h5 class="titre">Ajouter un Tag youtube:</h5>
-			<form method="post" action="http://192.168.0.50/add_tag.php">
-				<label for="tag">Tag:</label><br />
-				<input type="text" name="tag" id="tag"><br /><br />
-				<input class="submit_bouton" type="submit" value="Ajouter"><br /><br />
-			</form>
+			<h4 class="titre_section">Récapitulatif:</h4>
+			<h5 class="titre">Chaînes twitch:</h5>
+			<?php
+			$name=$_SESSION['name'];
+			// Visualisation des chaines twitch (récap + proposition de supression)
+			$liste_twitch = $bdd->query("SELECT * FROM liens_twitch WHERE pseudo='$name'");
+			while($chaines = $liste_twitch->fetch())
+			{
+				?>
+				<form action="http://192.168.0.50/post/del_streamer.php" method="post" style="margin-bottom: 5px;">
+					<input type="hidden" name="id_del" value="<?php echo $chaines['id']; ?>" />
+
+					<input type="submit" value="supprimer" style="border-radius: 2px;" />
+					<?php
+					echo $chaines['streamer'];
+					?>
+				</form>
+				<?php
+			}
+			?>
 		</div>
 		<div class="conteneur_centre">
 			<h4 class="titre_section" style="text-align: left;">Panneau de gestion:</h4>
-			<center><fieldset style="width: 50%;">
+			<?php
+			// Requête récupération des groupes
+			$recup_groupes_twitch = $bdd->query("SELECT groupe, pseudo FROM groupes_twitch WHERE pseudo='$name'")
+			?>
+			<fieldset style="width: 50%;">
 				<legend>Ajouter une chaîne Twitch:</legend>
 				<form action="http://192.168.0.50/post/add_streamer.php" method="post">
 					<input type="hidden" name="pseudo" value="<?php echo $_SESSION['name']; ?>" />
 					<br />
 					<center><label class="label_informations">Entrer le nom du streamer:</label></center><br />
 					<center><input type="text" name="streamer" style="font-size: 17px;"  /></center><br />
+					<center><select name="groupe">
+						<?php
+						while($info_groupe = $recup_groupes_twitch->fetch())
+						{
+							?>
+							<option value="<?php echo $info_groupe['groupe']; ?>" required><?php echo $info_groupe['groupe']; ?></option>
+							<?php
+						}
+						?>
+					</select></center>
+					<br />
 
 					<center><input class="submit_bouton" type="submit" value="Ajouter" /></center><br />
 				</form>
-			</fieldset></center>
-<!-- 			<fieldset style="margin-top:50px;">
+			</fieldset>
+			<!-- 			<fieldset style="margin-top:50px;">
 				<legend>Ajouter un twitch clip:</legend>
 				<form method="post" action="">
 				</form>

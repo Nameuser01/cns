@@ -39,6 +39,7 @@
 			$_SESSION["identifiant"] = $data["identifiant"];
 			$_SESSION["id"] = $data["id"];
 			$_SESSION["role"] = $data["role"];
+			$_SESSION['score'] = $data['score'];
 			$_SESSION["email"] = $data["email"];
 			header('Location: http://192.168.0.50/logs.php');
 		}

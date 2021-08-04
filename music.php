@@ -190,7 +190,8 @@ if(isset($_SESSION['name'])){
 					<form action="http://192.168.0.50/delete_video.php" method="post">
 						<center>
 							<input name="id" value="<?php echo htmlspecialchars($donnees['id']) ; ?>" type="hidden">
-							<input type="submit" id="suppression" name="suppression" value="Remove">
+							<br />
+							<input type="submit" class="submit_bouton" name="suppression" value="Supprimer" />
 						</center>
 					</form>
 					<br />
@@ -202,7 +203,7 @@ if(isset($_SESSION['name'])){
 		</div>
 		<div class="contright">
 			<h4>Management vidéos:</h4>
-			<form method="POST" action="add_video.php">
+			<form method="POST" action="http://192.168.0.50/add_video.php">
 				<div>
 					<label for="name_video">Titre:</label><br />
 					<input name="name_video" id="name_video" type="text" size="30"/>
@@ -211,8 +212,8 @@ if(isset($_SESSION['name'])){
 					<label for="url_video">URL:</label><br />
 					<input name="url_video" id="url_video" type="text" size="30" maxlength="11" required/>
 				</div>
-				<div>
-					<center><input type="submit" value="Envoyer" /></center>
+				<div><br />
+					<input type="submit" class="submit_bouton" value="Ajouter" />
 				</div>
 			</form>
 		</div>
