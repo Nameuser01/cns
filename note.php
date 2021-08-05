@@ -65,7 +65,19 @@ session_start();
 </head>
 <body>
 <?php
-if(isset($_SESSION['name'])){
+try
+{
+	$bdd = new PDO('mysql:host=localhost;dbname=mywiki;charset=utf8', 'root', '');
+}
+catch(Exeption $e)
+{
+	die('Erreur : ' . $e->getMessage());
+}
+$name = $_SESSION['name'];
+$req_auth = $bdd->query("SELECT identifiant FROM users WHERE pseudo='$name'");
+$auth=$req_auth->fetch();
+if(isset($_SESSION['identifiant']) AND $_SESSION['identifiant'] == $auth['identifiant'])
+{
 	$bit = 0;
 ?>
 	<header>
@@ -84,21 +96,12 @@ if(isset($_SESSION['name'])){
 		<div>
 			<h4>All my notes:</h4>
 			<?php
-				try
-				{
-					$bdd = new PDO('mysql:host=localhost;dbname=mywiki;charset=utf8', 'root', '');
-				}
-				catch(Exeption $e)
-				{
-					die('Erreur : ' . $e->getMessage());
-				}
-				$user_name = $_SESSION['name'];
-				$result = $bdd->query("SELECT COUNT(*) as nbr_comments FROM note WHERE pseudo='$user_name'");
+				$result = $bdd->query("SELECT COUNT(*) as nbr_comments FROM note WHERE pseudo='$name'");
 				$data = $result->fetch();
 				$nbr_comments = htmlspecialchars($data['nbr_comments']);
 				// $result->closeCursor();
 				// Nombre de pages à créer
-				$query_max_id = $bdd->query("SELECT MAX(id) AS max_id FROM note WHERE pseudo='$user_name'");
+				$query_max_id = $bdd->query("SELECT MAX(id) AS max_id FROM note WHERE pseudo='$name'");
 				$data_for_id = $query_max_id->fetch();
 				$max_id = $data_for_id['max_id'];
 				$nbr_pages = intdiv($max_id, 10);
@@ -108,7 +111,7 @@ if(isset($_SESSION['name'])){
 				$max_id_comment = ++$max_id_comment * 10;
 				$max_borne = ($max_id_comment - ($_GET['page'] - 1) * 10);
 				$min_borne = $max_borne - 10;
-				$reponse = $bdd->query("SELECT * FROM note WHERE pseudo='$user_name' AND ID < $max_borne AND ID >= $min_borne ORDER BY ID DESC");
+				$reponse = $bdd->query("SELECT * FROM note WHERE pseudo='$name' AND ID < $max_borne AND ID >= $min_borne ORDER BY ID DESC");
 				$step_stop = 1;
 				while ($donnees = $reponse->fetch())
 				{

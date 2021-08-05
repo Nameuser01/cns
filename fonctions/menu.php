@@ -1,5 +1,16 @@
 <?php
-if(isset($_SESSION['name']))
+try
+{
+	$bdd = new PDO('mysql:host=localhost;dbname=mywiki;charset=utf8', 'root', '');
+}
+catch(Exeption $e)
+{
+	die('Erreur : ' . $e->getMessage());
+}
+$name=$_SESSION['name'];
+$req_auth=$bdd->query("SELECT identifiant FROM users WHERE pseudo='$name'");
+$auth=$req_auth->fetch();
+if(isset($_SESSION['identifiant']) AND $_SESSION['identifiant'] == $auth['identifiant'])
 {
 ?>
 <nav id="menu_deroulant"><!--Menu animations-->
@@ -79,7 +90,6 @@ if(isset($_SESSION['name']))
 }
 else
 {
-	echo "Oups, tu t'es perdu...";
 	header('Location: http://192.168.0.50');
 }
 ?>

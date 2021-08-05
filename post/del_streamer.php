@@ -12,8 +12,13 @@ catch(Exeption $e)
 // vars
 $id = $_POST['id_del'];
 
-// del streamer
+$name = $_SESSION['name'];
+$req_auth = $bdd->query("SELECT identifiant FROM users WHERE pseudo='$name'");
+$auth = $req_auth->fetch();
 
+if(isset($_SESSION['identifiant']) && $_SESSION['identifiant'] == $auth['identifiant'])
+{
+	// del streamer
 	$bdd->query("DELETE FROM liens_twitch WHERE id='$id'");
 
 	//Décrémentation et update du score.
@@ -22,6 +27,19 @@ $id = $_POST['id_del'];
 	$new_score=$score - 0.1;
 	$bdd->query("UPDATE users SET score='$new_score' WHERE pseudo='$name'");
 	$_SESSION['score'] = $new_score;
-
+	?>
+	<script>
+		window.alert("Le streamer a bien été retiré des abonnements.");
+	</script>
+	<?php
+}
+else
+{
+	?>
+	<script>
+		window.alert("Erreur: Le streamer n'a pas été ajouté !");
+	</script>
+	<?php
+}
 header('Location: http://192.168.0.50/administration.php');
 ?>

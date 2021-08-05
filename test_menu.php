@@ -105,10 +105,5 @@
 			$(this).children('.deroulant').css('opacity','0')
 			$(this).children('.deroulant').css('height','0px')
 		})
-
-		if(window.confirm("Tu es sûr de vouloir ajouter a ta liste de chaînes twitch ?"))
-		{
-			document.write("Okay c'est fait");
-		}
 	</script>
 </html>

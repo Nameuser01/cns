@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 	<style>
 		body{
-			background-color: #000011;
+			background-color: #001;
 		}
 	</style>
 </head>

@@ -66,7 +66,18 @@ session_start();
 </head>
 <body>
 <?php
-if(isset($_SESSION['name']))
+try
+{
+	$bdd = new PDO('mysql:host=localhost;dbname=mywiki;charset=utf8', 'root', '');
+}
+catch(Exeption $e)
+{
+	die('Erreur : ' . $e->getMessage());
+}
+$name = $_SESSION['name'];
+$req_auth = $bdd->query("SELECT identifiant FROM users WHERE pseudo='$name'");
+$auth=$req_auth->fetch();
+if(isset($_SESSION['identifiant']) AND $_SESSION['identifiant'] == $auth['identifiant'])
 {
 ?>
 	<header>
@@ -81,16 +92,6 @@ if(isset($_SESSION['name']))
 			include("fonctions/menu.php");
 		?>
 	</header>
-	<?php
-		try
-		{
-			$bdd = new PDO('mysql:host=localhost;dbname=mywiki;charset=utf8', 'root', '');
-		}
-		catch(Exeption $e)
-		{
-			die('Erreur : ' . $e->getMessage());
-		}
-	?>
 	<section id="conteneurs">
 		<div class="conteneur_gauche">
 			<div><h4 class="titre_section">Liens utiles:</h4></div>
@@ -180,7 +181,8 @@ if(isset($_SESSION['name']))
 	</footer>
 <?php
 }
-else{
+else
+{
 	include("fonctions/ipsend.php");
 }
 ?>
