@@ -8,41 +8,32 @@ catch(Exeption $e)
 {
 	die('Erreur : ' . $e->getMessage());
 }
-$new_value=10;
-$new_id=0;
-
-$result = $bdd->query("SELECT COUNT(*) as nbr_comments FROM note_bis");
+$name=$_SESSION['name'];
+$result = $bdd->query("SELECT COUNT(*) as nbr_comments FROM note WHERE pseudo='$name'");
 $data = $result->fetch();
 $nbr_msg=$data['nbr_comments'];
+$result->closeCursor();
 echo "Il y a ".$nbr_msg." à traiter pour cette requête.<br><br>";
 
+$id_bdd=1;
 $i=1;
-$i_req=1;
-$i_separator=0;
 
 while($i <= $nbr_msg)
 {
-	if($i_separator == 0)
-	{
-		echo "---<br>";
-		$i_separator = 2;
-	}
-	$req_recup_msg = $bdd->query("SELECT * FROM note_bis WHERE id='$i_req'");
+	$req_recup_msg = $bdd->query("SELECT * FROM note WHERE id='$id_bdd' AND pseudo='$name'");
 	$data1 = $req_recup_msg->fetch();
-	$msg = $data1['secondaryID'];
-	if($msg)
+	$sort_id = $data1['sort_id'];
+	$commentaire=$data1['commentaire'];
+	if($commentaire)
 	{
-		echo "Rang: ".$i." -> msg: ".$data1['commentaire']."<br>";
-		$bdd->query("UPDATE note_bis SET secondaryID='$i' WHERE id='$i_req'");
-		$i_separator--;
+		echo "id de bdd: ".$id_bdd;
+		echo "<br>ligne traitement requêtes: ".$i;
+		echo "<br>Commentaire: ".$commentaire;
+		echo "<br><br>";
+		$bdd->query("UPDATE note SET sort_id='$i' WHERE id='$id_bdd'");
+		$i++;
 	}
-	else
-	{
-		$i--;
-	}
-	$i_req++;
-	$i++;
+	$id_bdd++;
 }
-
-echo '<a href="http://192.168.0.50/note.php?page=1" > Redirection </a>';
+header('Location: http://192.168.0.50/note.php?page=1');
 ?>

@@ -98,20 +98,19 @@ if(isset($_SESSION['identifiant']) AND $_SESSION['identifiant'] == $auth['identi
 			<?php
 				$result = $bdd->query("SELECT COUNT(*) as nbr_comments FROM note WHERE pseudo='$name'");
 				$data = $result->fetch();
-				$nbr_comments = htmlspecialchars($data['nbr_comments']);
-				// $result->closeCursor();
+				$nbr_comments = $data['nbr_comments'];
 				// Nombre de pages à créer
-				$query_max_id = $bdd->query("SELECT MAX(id) AS max_id FROM note WHERE pseudo='$name'");
+				$query_max_id = $bdd->query("SELECT MAX(sort_id) AS max_id FROM note WHERE pseudo='$name'");
 				$data_for_id = $query_max_id->fetch();
 				$max_id = $data_for_id['max_id'];
 				$nbr_pages = intdiv($max_id, 10);
 				$nbr_pages++;
 				$i = 1;
-				$max_id_comment = intdiv($max_id, 10); //tant que max_id < 100 ca fonctionne
+				$max_id_comment = intdiv($max_id, 10);
 				$max_id_comment = ++$max_id_comment * 10;
 				$max_borne = ($max_id_comment - ($_GET['page'] - 1) * 10);
 				$min_borne = $max_borne - 10;
-				$reponse = $bdd->query("SELECT * FROM note WHERE pseudo='$name' AND ID < $max_borne AND ID >= $min_borne ORDER BY ID DESC");
+				$reponse = $bdd->query("SELECT * FROM note WHERE pseudo='$name' AND sort_id < $max_borne AND sort_id >= $min_borne ORDER BY sort_id DESC");
 				$step_stop = 1;
 				while ($donnees = $reponse->fetch())
 				{
@@ -154,7 +153,7 @@ if(isset($_SESSION['identifiant']) AND $_SESSION['identifiant'] == $auth['identi
 					}
 					?>
 					<!-- Formulaire de suppression de données -->
-					<form method="post" action="http://192.168.0.50/delete_note.php">
+					<form method="post" action="http://192.168.0.50/post/delete_note.php">
 						<input type="hidden" name="id" value="<?php echo htmlspecialchars($donnees['id']) ; ?>">
 						<input type="submit" class="submit_bouton" name="delCom" value="remove this comment">
 					</form>
@@ -172,7 +171,7 @@ if(isset($_SESSION['identifiant']) AND $_SESSION['identifiant'] == $auth['identi
 		<!-- post des commentaires -->
 		<div class="post_section">
 			<h4 id="envoyer_les_commentaires" style="margin-top: 100px;">Section d'envoie des commentaires</h4>
-			<form method="post" action="http://192.168.0.50/note_post.php">
+			<form method="post" action="http://192.168.0.50/post/note_post.php">
 				<div>
 					<label for="titre" style="font-size: 20px">Titre</label><br>
 					<input type="text" name="titre" id="titre" maxlength="255" size="101%" /><br><br>
