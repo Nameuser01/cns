@@ -22,22 +22,13 @@ if(isset($_SESSION['identifiant']) && $_SESSION['identifiant'] == $auth['identif
 	//Incrémentation et update du score.
 	$name=$_SESSION['name'];
 	$score=$_SESSION['score'];
-	$new_score=$score + 0.1;
-	$bdd->query("UPDATE users SET score='$new_score' WHERE pseudo='$name'");
-	$_SESSION['score'] = $new_score;
-	?>
-	<script>
-		window.alert("Votre score est incrémenté de 0.1");
-	</script>
-	<?php
+	$score=$score + 1;
+	$bdd->query("UPDATE users SET score=$score WHERE pseudo='$name'");
+	$_SESSION['score'] = $score;
 }
 else
 {
-	?>
-	<script>
-		window.alert("Erreur: Le streamer, n'a pas été ajouté !");
-	</script>
-	<?php
+	//do nothing
 }
 
 header('Location: http://192.168.0.50/administration.php');

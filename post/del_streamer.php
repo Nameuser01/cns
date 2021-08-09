@@ -22,11 +22,10 @@ if(isset($_SESSION['identifiant']) && $_SESSION['identifiant'] == $auth['identif
 	$bdd->query("DELETE FROM liens_twitch WHERE id='$id'");
 
 	//Décrémentation et update du score.
-	$name=$_SESSION['name'];
 	$score=$_SESSION['score'];
-	$new_score=$score - 0.1;
-	$bdd->query("UPDATE users SET score='$new_score' WHERE pseudo='$name'");
-	$_SESSION['score'] = $new_score;
+	$score = $score - 1;
+	$_SESSION['score'] = $score;
+	$bdd->query("UPDATE users SET score=$score WHERE pseudo='$name'");
 	?>
 	<script>
 		window.alert("Le streamer a bien été retiré des abonnements.");
